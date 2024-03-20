@@ -4,13 +4,17 @@ const compression = require('compression');
 const { MongoClient, ObjectId } = require('mongodb');
 
 const app = express();
-const port = 3000;
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`);
+});
+
 
 app.use(compression());
 app.use(bodyParser.json());
 
 // MongoDB Connection URL
-const url = 'mongodb://localhost:27017';
+const url = `mongodb://${process.env.HOST}/${process.env.DATABASE}`;
+
 
 // Database Name
 const dbName = 'Business_Quant';
